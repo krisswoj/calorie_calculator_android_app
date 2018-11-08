@@ -52,6 +52,7 @@ hs_err_pid*
 /.nb-gradle/
 
 .idea/
+.gradle/
 target/maven-status/maven-compiler-plugin/
 lab01.iml
 /target/**
