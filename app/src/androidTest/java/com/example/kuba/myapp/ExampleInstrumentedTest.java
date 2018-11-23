@@ -1,4 +1,4 @@
-package com.krisswoj.caloriefoodcalculator;
+package com.example.kuba.myapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.krisswoj.caloriefoodcalculator", appContext.getPackageName());
+        assertEquals("com.example.kuba.myapp", appContext.getPackageName());
     }
 }

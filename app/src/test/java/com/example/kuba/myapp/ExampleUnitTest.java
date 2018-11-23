@@ -1,4 +1,4 @@
-package com.krisswoj.caloriefoodcalculator;
+package com.example.kuba.myapp;
 
 import org.junit.Test;
 
