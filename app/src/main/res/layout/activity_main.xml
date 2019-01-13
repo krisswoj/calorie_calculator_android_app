@@ -78,6 +78,15 @@
 
 
         <RadioButton
+            android:id="@+id/radioNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@android:color/white"
+            android:fontFamily="@font/amiko_bold"
+            android:text="normal"
+            android:textColor="@android:color/white" />
+
+        <RadioButton
             android:id="@+id/radioVegetarian"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

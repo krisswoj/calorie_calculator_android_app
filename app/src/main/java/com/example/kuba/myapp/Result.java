@@ -24,8 +24,7 @@ public class Result extends AppCompatActivity {
         TextView textView3 = findViewById(R.id.result_answer3);
         textView3.setText(extras.getString("rs3"));
 
-        TextView textView4 = findViewById(R.id.result_answer4);
-        textView4.setText(extras.getString("rs4"));
-
+//        TextView textView4 = findViewById(R.id.result_answer4);
+//        textView4.setText(extras.getString("rs4"));
     }
 }

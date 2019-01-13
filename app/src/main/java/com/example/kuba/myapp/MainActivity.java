@@ -2,7 +2,6 @@ package com.example.kuba.myapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, Result.class);
         Bundle extras = new Bundle();
-        FetchData result = new FetchData();
 
         EditText withoutIngredients = findViewById(R.id.without_ingredients);
         EditText caloriesAmount = findViewById(R.id.calories_amount);
@@ -56,8 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         String jsonRespons = null;
 
+        FetchData result = new FetchData("day", caloriesAmount.getText().toString(), String.valueOf(radioButton.getText().toString()), withoutIngredients.getText().toString());
         try {
             jsonRespons = result.execute().get();
+            System.out.println("odpowiedz json: " + jsonRespons);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }

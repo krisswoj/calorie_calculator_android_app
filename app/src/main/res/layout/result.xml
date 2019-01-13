@@ -58,19 +58,27 @@
         app:layout_column="0"
         app:layout_row="3" />
 
-    <TextView
-        android:id="@+id/result_answer4"
+
+    <ScrollView
+        android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/amiko_bold"
-        android:gravity="center_horizontal"
-        android:paddingTop="10dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="@android:color/white"
         app:layout_column="0"
-        app:layout_row="4" />
+        app:layout_row="4">
+
+        <TextView
+            android:id="@+id/result_answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/amiko_bold"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/large_text"
+            android:textColor="@android:color/white" />
+
+    </ScrollView>
 
 
 </android.support.v7.widget.GridLayout>

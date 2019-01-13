@@ -10,96 +10,61 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  * Created by Abhishek Panwar on 7/14/2017.
  */
 
 public class FetchData extends AsyncTask<Void, Void, String> {
-    private String data = "";
-    private String dataParsed = "";
-    private String singleParsed = "";
+
+    private static final String API_URL_RESPONSE = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate";
+    private static final String API_KEY = "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2";
+
+    private String timeFrame;
+    private String targetCalories;
+    private String typeOfDiet;
+    private String excludedIngredients;
+
+    private String response;
+
+    public FetchData(String timeFrame, String targetCalories, String typeOfDiet, String excludedIngredients) {
+        this.timeFrame = timeFrame;
+        this.targetCalories = targetCalories;
+        this.typeOfDiet = typeOfDiet;
+        this.excludedIngredients = excludedIngredients;
+    }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
-
-
             CloseableHttpClient client = HttpClients.createDefault();
 
-            URIBuilder builder = new URIBuilder("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate");
+            URIBuilder builder = new URIBuilder(API_URL_RESPONSE);
             builder
-                    .setParameter("timeFrame", "day")
-//                    .setParameters(nameValuePairList(allegroSellersId))
-                    .setParameter("targetCalories", "2500")
-                    .setParameter("diet", "paleo");
+                    .setParameter("timeFrame", timeFrame)
+                    .setParameter("targetCalories", targetCalories)
+                    .setParameter("diet", typeOfDiet)
+                    .setParameter("exclude", excludedIngredients);
 
             HttpGet httpGet = new HttpGet(builder.build());
 
-            httpGet.setHeader("X-RapidAPI-Key", "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2");
+            httpGet.setHeader("X-RapidAPI-Key", API_KEY);
             CloseableHttpResponse response = client.execute(httpGet);
-            String res = httpResponseConverter(response);
-//            String res = response.toString();
+            this.response = httpResponseConverter(response);
             client.close();
-
-            System.out.println("test json reposne: " + res);
-
-
-
-//            HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=2000&diet=vegetarian&exclude=shellfish%2C+olives")
-//                    .header("X-RapidAPI-Key", "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2").asJson();
-//
-//            URIBuilder builder = new URIBuilder();
-//            builder.setScheme("https")
-//                    .setHost("spoonacular-recipe-food-nutrition-v1.p.rapidapi.com")
-//                    .setPath("/recipes/mealplans/generate")
-//                    .setParameter("timeFrame", "day")
-//                    .setParameter("targetCalories", "2500")
-//                    .setParameter("diet", "paleo")
-//                    .setParameter("exclude", "oils")
-//                    .setParameter("X-RapidAPI-Key", "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2");
-
-//            builder.build().toString();
-
-
-
-//            URL url = new URL("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate");
-//            URL url = new URL(builder.build().toString());
-
-//            System.out.println("test json reposne: " + response.getBody().toString());
-
-
-            URL url = new URL("https://api.myjson.com/bins/j5f6b");
-//            URL url = new URL("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate?timeFrame=day&targetCalories=2000&diet=vegetarian&exclude=shellfish%2C+olives");
-
-            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            InputStream inputStream = httpURLConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String line = "";
-            while (line != null) {
-                line = bufferedReader.readLine();
-                data += line;
-            }
 
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-        return data;
+        return response;
     }
 
     @Override
     protected void onPostExecute(String aVoid) {
         super.onPostExecute(aVoid);
-//        MainActivity.data.setText(this.dataParsed);
-
     }
 
     private String httpResponseConverter(CloseableHttpResponse response) throws IOException {
@@ -109,16 +74,10 @@ public class FetchData extends AsyncTask<Void, Void, String> {
 
         if (entity != null) {
             InputStream instream = entity.getContent();
-
-
             byte[] bytes = IOUtils.toByteArray(instream);
             res = new String(bytes, "UTF-8");
             instream.close();
         }
         return res;
     }
-
-//    private List<NameValuePair> nameValuePairs (String timeFrame, int targetCalories, String diet, String exclude){
-//        List<NameValuePair> nameValuePairs = new
-//    }
 }

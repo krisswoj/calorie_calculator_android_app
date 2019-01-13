@@ -3,7 +3,7 @@
     <string name="name">Type title</string>
     <string name="logo">Logo</string>
     <string name="enter_amount_of_calories">Enter the number of calories for the whole day</string>
-    <string name="sample_amount_calries_answer">2500</string>
+    <string name="sample_amount_calries_answer">1800</string>
     <string name="special_diet_version">Choose the special version of diet (Optional)</string>
     <string name="result">Results:</string>
     <string name="type_weight">Type weight</string>
