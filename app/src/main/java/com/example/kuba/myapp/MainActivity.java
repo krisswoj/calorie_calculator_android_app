@@ -10,9 +10,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.kuba.myapp.result.MealsResultView;
+
 import java.util.concurrent.ExecutionException;
 
-import domain.FetchData;
+import domain.MealsApiRequest;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, Result.class);
+        Intent intent = new Intent(this, MealsResultView.class);
         Bundle extras = new Bundle();
 
         EditText withoutIngredients = findViewById(R.id.without_ingredients);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         String jsonRespons = null;
 
-        FetchData result = new FetchData("day", caloriesAmount.getText().toString(), String.valueOf(radioButton.getText().toString()), withoutIngredients.getText().toString());
+        MealsApiRequest result = new MealsApiRequest("day", caloriesAmount.getText().toString(), String.valueOf(radioButton.getText().toString()), withoutIngredients.getText().toString());
         try {
             jsonRespons = result.execute().get();
             System.out.println("odpowiedz json: " + jsonRespons);

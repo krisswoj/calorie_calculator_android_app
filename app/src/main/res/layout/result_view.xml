@@ -4,40 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232323"
     android:fitsSystemWindows="true"
     tools:context=".result.MealsResultView">
 
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
 
         <TextView
             android:id="@+id/result_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:fontFamily="@font/amiko_bold"
             android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
             android:text="test text hehehe"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/result_answer1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/amiko_bold"
-            android:gravity="center_horizontal"
-            android:text="test text hehehe"
-            android:textColor="@android:color/black" />
+            app:layout_column="0"
+            app:layout_row="1" />
 
 
     </android.support.design.widget.AppBarLayout>
+
+
 
 
     <include layout="@layout/content_main" />

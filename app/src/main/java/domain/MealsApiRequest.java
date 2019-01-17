@@ -14,11 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 
-/**
- * Created by Abhishek Panwar on 7/14/2017.
- */
-
-public class FetchData extends AsyncTask<Void, Void, String> {
+public class MealsApiRequest extends AsyncTask<Void, Void, String> {
 
     private static final String API_URL_RESPONSE = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate";
     private static final String API_KEY = "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2";
@@ -30,7 +26,7 @@ public class FetchData extends AsyncTask<Void, Void, String> {
 
     private String response;
 
-    public FetchData(String timeFrame, String targetCalories, String typeOfDiet, String excludedIngredients) {
+    public MealsApiRequest(String timeFrame, String targetCalories, String typeOfDiet, String excludedIngredients) {
         this.timeFrame = timeFrame;
         this.targetCalories = targetCalories;
         this.typeOfDiet = typeOfDiet;
