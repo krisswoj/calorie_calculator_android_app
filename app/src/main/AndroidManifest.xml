@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".result.MealsResultView" />
-        <activity android:name=".result.TestActivity" />
+        <activity android:name=".result.RecipeResultView" />
     </application>
 
 </manifest>

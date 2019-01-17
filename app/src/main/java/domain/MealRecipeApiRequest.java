@@ -14,37 +14,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 
-public class MealsApiRequest extends AsyncTask<Void, Void, String> {
+public class MealRecipeApiRequest extends AsyncTask<Void, Void, String> {
 
-    private static final String API_URL_RESPONSE = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/mealplans/generate";
+    private static final String API_URL_RESPONSE = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/";
     private static final String API_KEY = "58350e36fbmsh0d1027c7c4adcd2p1dbdd9jsn8aa5925947d2";
 
-    private String timeFrame;
-    private String targetCalories;
-    private String typeOfDiet;
-    private String excludedIngredients;
-
+    private String recipeId;
     private String response;
 
-    public MealsApiRequest(String timeFrame, String targetCalories, String typeOfDiet, String excludedIngredients) {
-        this.timeFrame = timeFrame;
-        this.targetCalories = targetCalories;
-        this.typeOfDiet = typeOfDiet;
-        this.excludedIngredients = excludedIngredients;
+    public MealRecipeApiRequest(String recipeId) {
+        this.recipeId = recipeId;
     }
 
     @Override
     protected String doInBackground(Void... voids) {
         try {
+
+            String urlLink = String.format("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/%s/information", recipeId);
+
             CloseableHttpClient client = HttpClients.createDefault();
 
-            URIBuilder builder = new URIBuilder(API_URL_RESPONSE);
-            builder
-                    .setParameter("timeFrame", timeFrame)
-                    .setParameter("targetCalories", targetCalories)
-                    .setParameter("diet", typeOfDiet)
-                    .setParameter("exclude", excludedIngredients);
-
+            URIBuilder builder = new URIBuilder(urlLink);
             HttpGet httpGet = new HttpGet(builder.build());
 
             httpGet.setHeader("X-RapidAPI-Key", API_KEY);

@@ -7,7 +7,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Meals extends OutputStream {
+public class MealsPack extends OutputStream {
 
     @SerializedName("meals")
     @Expose

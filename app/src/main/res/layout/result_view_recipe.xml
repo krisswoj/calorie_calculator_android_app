@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".result.MealsResultView">
+    tools:context=".result.RecipeResultView">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:fontFamily="@font/amiko_bold"
             android:gravity="left"
             android:textColor="@android:color/darker_gray"
-            android:text="test text hehehe test text hehehe test text hehehe test text hehehe test text hehehe test text hehehe"
+            android:text="recipe recipe recipe recipe"
             app:layout_column="0"
             app:layout_row="1" />
 
@@ -44,13 +44,13 @@
             android:fontFamily="@font/amiko_bold"
             android:gravity="left"
             android:textColor="@android:color/darker_gray"
-            android:text="test text hehehe test text hehehe test text hehehe test text hehehe test text hehehe test text hehehe"
+            android:text="recipe2 recipe2 recipe2 recipe2"
             app:layout_column="0"
             app:layout_row="1" />
 
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main_recipe" />
 
 </android.support.design.widget.CoordinatorLayout>

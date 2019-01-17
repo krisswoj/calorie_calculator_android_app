@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="#232323"
     android:fitsSystemWindows="true"
-    tools:context=".result.MealsResultView">
+    tools:context=".result.RecipeResultView">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main_recipe" />
 
 </android.support.design.widget.CoordinatorLayout>

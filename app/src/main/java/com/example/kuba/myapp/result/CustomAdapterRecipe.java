@@ -13,15 +13,15 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.kuba.myapp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import domain.mealRecipe.MealRecipeResponse;
 import domain.meals.Meal;
 
-public class CustomAdapter extends ArrayAdapter<Meal> implements View.OnClickListener {
+public class CustomAdapterRecipe extends ArrayAdapter<MealRecipeResponse> implements View.OnClickListener {
 
     private ImageLoader mImageLoader;
-    private List<Meal> dataSet;
+    private List<MealRecipeResponse> dataSet;
     private Context mContext;
 
     private static class ViewHolder {
@@ -31,7 +31,7 @@ public class CustomAdapter extends ArrayAdapter<Meal> implements View.OnClickLis
         NetworkImageView img;
     }
 
-    public CustomAdapter(List<Meal> data, Context context) {
+    public CustomAdapterRecipe(List<MealRecipeResponse> data, Context context) {
         super(context, R.layout.row_item, data);
         this.dataSet = data;
         this.mContext = context;
@@ -49,7 +49,7 @@ public class CustomAdapter extends ArrayAdapter<Meal> implements View.OnClickLis
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Meal meal = getItem(position);
+        MealRecipeResponse mealRecipeResponse = getItem(position);
         ViewHolder viewHolder;
         mImageLoader = CustomVolleyRequestQueue.getInstance(getContext()).getImageLoader();
         final View result;
@@ -76,9 +76,9 @@ public class CustomAdapter extends ArrayAdapter<Meal> implements View.OnClickLis
         result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.txtName.setText(meal.getTitle());
-        viewHolder.txtType.setText(String.valueOf(meal.getReadyInMinutes()));
-        viewHolder.img.setImageUrl("https://spoonacular.com/recipeImages/" + meal.getImageUrls().get(0), mImageLoader);
+        viewHolder.txtName.setText(mealRecipeResponse.getTitle());
+        viewHolder.txtType.setText(String.valueOf(mealRecipeResponse.getReadyInMinutes()));
+        viewHolder.img.setImageUrl("https://spoonacular.com/recipeImages/" + mealRecipeResponse.getImage(), mImageLoader);
 
         return convertView;
     }

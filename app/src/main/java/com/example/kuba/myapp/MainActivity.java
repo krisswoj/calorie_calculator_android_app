@@ -8,30 +8,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.example.kuba.myapp.result.MealsResultView;
 
 import java.util.concurrent.ExecutionException;
 
+import domain.MealRecipeApiRequest;
 import domain.MealsApiRequest;
 
 public class MainActivity extends AppCompatActivity {
-
-    private Button click;
-    //    private RadioGroup radioGroup;
-    public static TextView data;
-
-    private RadioGroup radioGroup;
-    private RadioButton radioButton;
-    private Button btnDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        click = findViewById(R.id.btnDisplay);
+        Button click = findViewById(R.id.btnDisplay);
 
         click.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 sendMessage(view);
             }
         });
-
-
     }
 
     public void sendMessage(View view) {
@@ -52,14 +42,13 @@ public class MainActivity extends AppCompatActivity {
         RadioGroup radioGroup = findViewById(R.id.radioKindOfMeal);
 
         int selectedId = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(selectedId);
+        RadioButton radioButton = findViewById(selectedId);
 
         String jsonRespons = null;
 
         MealsApiRequest result = new MealsApiRequest("day", caloriesAmount.getText().toString(), String.valueOf(radioButton.getText().toString()), withoutIngredients.getText().toString());
         try {
             jsonRespons = result.execute().get();
-            System.out.println("odpowiedz json: " + jsonRespons);
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -68,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         extras.putString("rs2", caloriesAmount.getText().toString());
         extras.putString("rs3", String.valueOf(radioButton.getText().toString()));
         extras.putString("rs4", jsonRespons);
-        intent.putExtras(extras);
 
+        intent.putExtras(extras);
         startActivity(intent);
     }
 }
