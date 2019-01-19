@@ -41,7 +41,7 @@ public class RecipeResultView extends AppCompatActivity {
 
         adapter = new CustomAdapterRecipe(mealRecipeResponseList, getApplicationContext());
 
-        listView = findViewById(R.id.list);
+        listView = findViewById(R.id.list_recipe);
         listView.setAdapter(adapter);
 
     }

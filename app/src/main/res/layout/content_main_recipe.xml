@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/result_view"
+    tools:showIn="@layout/result_view_recipe"
     tools:context=".result.RecipeResultView">
 
 
 
 <ListView
-        android:id="@+id/list"
+        android:id="@+id/list_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />

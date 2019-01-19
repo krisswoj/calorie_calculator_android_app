@@ -15,8 +15,10 @@ import com.example.kuba.myapp.R;
 
 import java.util.List;
 
+import domain.mealRecipe.AnalyzedInstruction;
+import domain.mealRecipe.ExtendedIngredient;
 import domain.mealRecipe.MealRecipeResponse;
-import domain.meals.Meal;
+import domain.mealRecipe.Step;
 
 public class CustomAdapterRecipe extends ArrayAdapter<MealRecipeResponse> implements View.OnClickListener {
 
@@ -32,7 +34,7 @@ public class CustomAdapterRecipe extends ArrayAdapter<MealRecipeResponse> implem
     }
 
     public CustomAdapterRecipe(List<MealRecipeResponse> data, Context context) {
-        super(context, R.layout.row_item, data);
+        super(context, R.layout.row_item_recipe, data);
         this.dataSet = data;
         this.mContext = context;
     }
@@ -58,10 +60,10 @@ public class CustomAdapterRecipe extends ArrayAdapter<MealRecipeResponse> implem
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            convertView = inflater.inflate(R.layout.row_item_recipe, parent, false);
 
-            viewHolder.txtName = convertView.findViewById(R.id.name);
-            viewHolder.txtType = convertView.findViewById(R.id.type);
+            viewHolder.txtName = convertView.findViewById(R.id.name_recipe);
+            viewHolder.txtType = convertView.findViewById(R.id.type_recipe);
             viewHolder.img = convertView.findViewById(R.id.network_img_view);
 
             result = convertView;
@@ -77,9 +79,39 @@ public class CustomAdapterRecipe extends ArrayAdapter<MealRecipeResponse> implem
         lastPosition = position;
 
         viewHolder.txtName.setText(mealRecipeResponse.getTitle());
-        viewHolder.txtType.setText(String.valueOf(mealRecipeResponse.getReadyInMinutes()));
-        viewHolder.img.setImageUrl("https://spoonacular.com/recipeImages/" + mealRecipeResponse.getImage(), mImageLoader);
+        viewHolder.txtType.setText(recipeDetails(mealRecipeResponse));
+        viewHolder.img.setImageUrl(mealRecipeResponse.getImage(), mImageLoader);
 
         return convertView;
+    }
+
+    private String recipeDetails(MealRecipeResponse mealRecipeResponse) {
+        return String.format("\nNecessary ingredients: %s \n \n Instructions: \n\n%s",
+                recipeIngredients(mealRecipeResponse),
+                recipeInstructions(mealRecipeResponse)
+        );
+    }
+
+    private String recipeIngredients(MealRecipeResponse mealRecipeResponse) {
+        StringBuilder recipeIngredients = new StringBuilder();
+
+        for (ExtendedIngredient element : mealRecipeResponse.getExtendedIngredients()) {
+            recipeIngredients.append(String.format("%s, ", element.getName()));
+        }
+        return recipeIngredients.toString();
+    }
+
+    private String recipeInstructions(MealRecipeResponse mealRecipeResponse) {
+        StringBuilder recipeIngredients = new StringBuilder();
+
+        for (AnalyzedInstruction element : mealRecipeResponse.getAnalyzedInstructions()) {
+            for (Step step : element.getSteps()) {
+                recipeIngredients.append(String.format("Step %s: %s \n\n",
+                        step.getNumber(),
+                        step.getStep())
+                );
+            }
+        }
+        return recipeIngredients.toString();
     }
 }

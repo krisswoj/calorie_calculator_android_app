@@ -13,42 +13,6 @@
         android:background="@android:color/white"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-
-        <TextView
-            android:id="@+id/meal_information"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:fontFamily="@font/amiko_bold"
-            android:gravity="left"
-            android:textColor="@android:color/darker_gray"
-            android:text="recipe recipe recipe recipe"
-            app:layout_column="0"
-            app:layout_row="1" />
-
-        <TextView
-            android:id="@+id/recived_nutrients_details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:fontFamily="@font/amiko_bold"
-            android:gravity="left"
-            android:textColor="@android:color/darker_gray"
-            android:text="recipe2 recipe2 recipe2 recipe2"
-            app:layout_column="0"
-            app:layout_row="1" />
-
-
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main_recipe" />
